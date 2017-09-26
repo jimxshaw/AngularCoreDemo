@@ -15,7 +15,8 @@ namespace Angular_ASPNETCore_CustomersService.Apis
         ICustomersRepository _CustomersRepository;
         ILogger _Logger;
 
-        public CustomersApiController(ICustomersRepository customersRepo, ILoggerFactory loggerFactory) {
+        public CustomersApiController(ICustomersRepository customersRepo, ILoggerFactory loggerFactory)
+        {
             _CustomersRepository = customersRepo;
             _Logger = loggerFactory.CreateLogger(nameof(CustomersApiController));
         }

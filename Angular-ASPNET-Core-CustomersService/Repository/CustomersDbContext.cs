@@ -9,6 +9,6 @@ namespace Angular_ASPNETCore_CustomersService.Repository
         public DbSet<Order> Orders { get; set; }
         public DbSet<State> States { get; set; }
 
-        public CustomersDbContext (DbContextOptions<CustomersDbContext> options) : base(options) { }
+        public CustomersDbContext(DbContextOptions<CustomersDbContext> options) : base(options) { }
     }
 }

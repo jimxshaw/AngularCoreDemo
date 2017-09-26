@@ -15,7 +15,8 @@ namespace Angular_ASPNETCore_CustomersService.Apis
         IStatesRepository _StatesRepository;
         ILogger _Logger;
 
-        public StatesApiController(IStatesRepository statesRepo, ILoggerFactory loggerFactory) {
+        public StatesApiController(IStatesRepository statesRepo, ILoggerFactory loggerFactory)
+        {
             _StatesRepository = statesRepo;
             _Logger = loggerFactory.CreateLogger(nameof(StatesApiController));
         }
@@ -24,7 +25,8 @@ namespace Angular_ASPNETCore_CustomersService.Apis
         [NoCache]
         [ProducesResponseType(typeof(List<State>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<ActionResult> States() {
+        public async Task<ActionResult> States()
+        {
             try
             {
                 var states = await _StatesRepository.GetStatesAsync();

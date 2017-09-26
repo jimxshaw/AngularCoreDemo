@@ -15,9 +15,10 @@ namespace Angular_ASPNETCore_CustomersService.Repository
         private readonly CustomersDbContext _Context;
         private readonly ILogger _Logger;
 
-        public CustomersRepository(CustomersDbContext context, ILoggerFactory loggerFactory) {
-          _Context = context;
-          _Logger = loggerFactory.CreateLogger("CustomersRepository");
+        public CustomersRepository(CustomersDbContext context, ILoggerFactory loggerFactory)
+        {
+            _Context = context;
+            _Logger = loggerFactory.CreateLogger("CustomersRepository");
         }
 
         public async Task<List<Customer>> GetCustomersAsync()
@@ -51,11 +52,11 @@ namespace Angular_ASPNETCore_CustomersService.Repository
             _Context.Add(customer);
             try
             {
-              await _Context.SaveChangesAsync();
+                await _Context.SaveChangesAsync();
             }
             catch (System.Exception exp)
             {
-               _Logger.LogError($"Error in {nameof(InsertCustomerAsync)}: " + exp.Message);
+                _Logger.LogError($"Error in {nameof(InsertCustomerAsync)}: " + exp.Message);
             }
 
             return customer;
@@ -68,11 +69,11 @@ namespace Angular_ASPNETCore_CustomersService.Repository
             _Context.Entry(customer).State = EntityState.Modified;
             try
             {
-              return (await _Context.SaveChangesAsync() > 0 ? true : false);
+                return (await _Context.SaveChangesAsync() > 0 ? true : false);
             }
             catch (Exception exp)
             {
-               _Logger.LogError($"Error in {nameof(UpdateCustomerAsync)}: " + exp.Message);
+                _Logger.LogError($"Error in {nameof(UpdateCustomerAsync)}: " + exp.Message);
             }
             return false;
         }
@@ -88,11 +89,11 @@ namespace Angular_ASPNETCore_CustomersService.Repository
             _Context.Remove(customer);
             try
             {
-              return (await _Context.SaveChangesAsync() > 0 ? true : false);
+                return (await _Context.SaveChangesAsync() > 0 ? true : false);
             }
             catch (System.Exception exp)
             {
-               _Logger.LogError($"Error in {nameof(DeleteCustomerAsync)}: " + exp.Message);
+                _Logger.LogError($"Error in {nameof(DeleteCustomerAsync)}: " + exp.Message);
             }
             return false;
         }

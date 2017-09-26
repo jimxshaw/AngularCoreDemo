@@ -42,14 +42,16 @@ namespace Angular_ASPNETCore_CustomersService
             //});
 
             //Add SqLite support
-            services.AddDbContext<CustomersDbContext>(options => {
+            services.AddDbContext<CustomersDbContext>(options =>
+            {
                 options.UseSqlite(Configuration.GetConnectionString("CustomersSqliteConnectionString"));
             });
 
             services.AddMvc();
 
             //Handle XSRF Name for Header
-            services.AddAntiforgery(options => {
+            services.AddAntiforgery(options =>
+            {
                 options.HeaderName = "X-XSRF-TOKEN";
             });
 
@@ -79,8 +81,8 @@ namespace Angular_ASPNETCore_CustomersService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
-            IHostingEnvironment env, 
+        public void Configure(IApplicationBuilder app,
+            IHostingEnvironment env,
             CustomersDbSeeder customersDbSeeder,
             IAntiforgery antiforgery)
         {
@@ -94,7 +96,7 @@ namespace Angular_ASPNETCore_CustomersService
                      string.Equals(context.Request.Path.Value, "/home/index", StringComparison.OrdinalIgnoreCase)))
                 {
                     var tokens = antiforgery.GetAndStoreTokens(context);
-                    context.Response.Cookies.Append("XSRF-TOKEN", 
+                    context.Response.Cookies.Append("XSRF-TOKEN",
                         tokens.RequestToken,
                         new CookieOptions() { HttpOnly = false });
                 }
@@ -117,7 +119,7 @@ namespace Angular_ASPNETCore_CustomersService
             });
 
             //This would need to be locked down as needed (very open right now)
-            app.UseCors((corsPolicyBuilder) => 
+            app.UseCors((corsPolicyBuilder) =>
             {
                 corsPolicyBuilder.AllowAnyOrigin();
                 corsPolicyBuilder.AllowAnyMethod();
